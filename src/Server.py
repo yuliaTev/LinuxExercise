@@ -2,21 +2,19 @@ from utils.Utils import Utils
 
 
 class Server:
-
-    def __init__(self, cpu, ram, nic, disk):
-
-        self.utils = Utils()
-
+    def __init__(self, cpu, ram, nics, disks):
         self.vendor = self.init_vendor()
         self.model = self.init_model()
 
         self.serverCpu = cpu
         self.serverRam = ram
-        self.serverNic = nic
-        self.serverDisk = disk
+        self.serverDisks = disks
+        self.serverNics = nics
 
-    def init_vendor(self):
-        return self.utils.produce_command("lscpu | grep 'Vendor ID' | awk '{print $3}'")
+    @staticmethod
+    def init_vendor():
+        return Utils.produce_command("sudo dmidecode | grep -w 'Vendor:'")
 
-    def init_model(self):
-        return self.utils.produce_command("lscpu | grep 'Model name' | awk '{print $3}'")
+    @staticmethod
+    def init_model():
+        return Utils.produce_command("sudo dmidecode -t system | awk -F: '$1~/Product Name/'")

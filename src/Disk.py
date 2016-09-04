@@ -1,4 +1,5 @@
 class Disk:
 
-    def blabla(self):
-        pass
+    def __init__(self, size, vendor):
+        self.diskObject = {'Size' : size,
+                           'Vendor' : vendor}
