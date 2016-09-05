@@ -19,7 +19,7 @@ class Cpu:
         return Utils.produce_command("lscpu | grep 'Socket(s)' | awk '{print $2}'")
 
     def init_cores(self):
-        return Utils.produce_command("cat /proc/cpuinfo | grep 'cpu cores' | awk '{print $4}'")
+        return Utils.produce_command("cat /proc/cpuinfo | grep '^processor' | wc -l")
 
     def init_speed(self):
         return Utils.produce_command("lscpu | grep 'CPU MHz' | awk '{print $3}'")
