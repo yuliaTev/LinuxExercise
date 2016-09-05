@@ -8,7 +8,7 @@ from utils.Utils import Utils
 
 class Main:
 
-    server = Server(Cpu(), Ram(), Nics(), Disks())
+    server = Server(cpu=Cpu(), ram=Ram(), nics=Nics(), disks=Disks())
     serverObject = {'Vendor' : server.vendor,
                 'Model' : server.model,
                 'Cpu': server.serverCpu.cpuObject,

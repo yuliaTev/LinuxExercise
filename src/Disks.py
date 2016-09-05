@@ -19,3 +19,9 @@ class Disks:
     def init_disks_object(self):
         for k, v in self.disksList.items():
             self.disksObject.update({k: v.diskObject})
+
+
+if __name__ == '__main__':
+    disks = Disks()
+    print str(disks.disksList)
+    print str(disks.disksObject)

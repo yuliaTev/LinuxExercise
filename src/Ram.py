@@ -10,5 +10,3 @@ class Ram:
 
     def init_ram_size(self):
         return Utils.produce_command("grep MemTotal /proc/meminfo | awk '{print $2}'")
-        
-    

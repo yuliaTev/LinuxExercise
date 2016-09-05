@@ -14,10 +14,10 @@ class Nics:
 
     def get_all_nics_list(self):
         for device in self.allDevices.split():
-              self.nicsList.update({device: Nic(Utils.produce_command("ethtool " + device + " | grep 'Port'"),
-                                                Utils.produce_command("ethtool " + device + " | grep 'Speed'"),
-                                                Utils.produce_command(
-                                                  "ifconfig " + device + " | grep HWaddr | awk '{print $5}'"))})
+              self.nicsList.update({device: Nic(
+                  Utils.produce_command("ethtool " + device + " | grep 'Port' | sed 's/^.*: //'"),
+                  Utils.produce_command("ethtool " + device + " | grep 'Speed' | sed 's/^.*: //'"),
+                  Utils.produce_command("ifconfig " + device + " | grep HWaddr | awk '{print $5}' | sed 's/^.*: //'"))})
 
     def init_nics_object(self):
         for k, v in self.nicsList.items():
